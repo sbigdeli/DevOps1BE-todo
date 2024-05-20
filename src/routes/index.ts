@@ -4,6 +4,10 @@ import { verifyTokenMiddleware } from "../middleware/verifyToken"
 
 const router: Router = Router()
 
+router.get('/', (req, res) => {
+    res.send('Hello World2!')
+  })
+
 router.get("/todos", verifyTokenMiddleware, getTodos)
 
 router.post("/add-todo", verifyTokenMiddleware, addTodo)
