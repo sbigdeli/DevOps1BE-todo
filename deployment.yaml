@@ -1,0 +1,38 @@
+# OBS! Glöm inte köra filen: kubectl apply -f deployment.yaml
+# Denna fil innehåller både deployment- och service.yaml, går att separera med --- sträckkk
+# Kör dessa kommando i ordning:
+# minikube start
+# kubectl apply -f deployment.yaml
+# kubectl get pods -l app=todo
+# kubectl get deployments
+# minikube service todo
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo
+  template:
+    metadata:
+      labels:
+        app: todo
+    spec:
+      containers:
+      - name: todo
+        image: vedmastaren/todo:v1.0.0 # Ändra till korrekt image, hur gör man när man uppdaterar version, fråga Jon? (nu heter den vedmastaren/test i docker hub)! Behöver göra en för varje, todo, user, och todo...)
+        ports:
+        - containerPort: 4000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo
+spec:
+  ports:
+  - port: 4000
+    targetPort: 4000
+  selector:
+    app: todo
