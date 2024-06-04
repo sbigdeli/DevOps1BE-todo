@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { beforeAll, afterAll, beforeEach, describe, it, expect } from "@jest/globals";
+import {beforeEach, describe, it, expect } from "@jest/globals";
 
 import { getTodos } from '../../../src/controllers/todos';
 import Todo from '../../../src/models/todo';
